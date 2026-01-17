@@ -6,13 +6,13 @@
 An example plugin.
 
 ```
-https://raw.githubusercontent.com/nohackjustnoobb/Mankai-Plugins/master/dist/example/example.json
+https://raw.githubusercontent.com/nohackjustnoobb/Mankai-Plugins/static/example/example.json
 ```
 
 ### 漫畫人 v1.0.0
 漫畫人插件
 
 ```
-https://raw.githubusercontent.com/nohackjustnoobb/Mankai-Plugins/master/dist/mhr/mhr.json
+https://raw.githubusercontent.com/nohackjustnoobb/Mankai-Plugins/static/mhr/mhr.json
 ```
 
