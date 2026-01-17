@@ -1,0 +1,60 @@
+{
+  "id": "example",
+  "name": "Example Plugin",
+  "version": "1.0.0",
+  "authors": ["ME"],
+  "description": "An example plugin.",
+  "repository": "https://example.com",
+  "updatesUrl": "https://example.com/updates",
+  "availableGenres": [
+    "action",
+    "romance",
+    "yuri",
+    "boysLove",
+    "schoolLife",
+    "adventure",
+    "harem",
+    "speculativeFiction",
+    "war",
+    "suspense",
+    "fanFiction",
+    "comedy",
+    "magic",
+    "horror",
+    "historical",
+    "sports",
+    "mature",
+    "mecha"
+  ],
+  "configs": [
+    {
+      "key": "text_config",
+      "name": "Text Config",
+      "description": "A simple text configuration option.",
+      "type": "text",
+      "defaultValue": "Default Text"
+    },
+    {
+      "key": "number_config",
+      "name": "Number Config",
+      "description": "A simple number configuration option.",
+      "type": "number",
+      "defaultValue": 42
+    },
+    {
+      "key": "boolean_config",
+      "name": "Boolean Config",
+      "description": "A simple boolean configuration option.",
+      "type": "boolean",
+      "defaultValue": true
+    },
+    {
+      "key": "select_config",
+      "name": "Select Config",
+      "description": "A simple select configuration option.",
+      "type": "select",
+      "defaultValue": "option1",
+      "options": ["option1", "option2", "option3"]
+    }
+  ]
+}

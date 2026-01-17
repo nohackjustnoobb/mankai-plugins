@@ -1,0 +1,27 @@
+{
+  "id": "mhr",
+  "name": "漫畫人",
+  "version": "1.0.0",
+  "description": "漫畫人插件",
+  "availableGenres": [
+    "action",
+    "romance",
+    "yuri",
+    "boysLove",
+    "schoolLife",
+    "adventure",
+    "harem",
+    "speculativeFiction",
+    "war",
+    "suspense",
+    "fanFiction",
+    "comedy",
+    "magic",
+    "horror",
+    "historical",
+    "sports",
+    "mature",
+    "mecha"
+  ],
+  "configs": []
+}
