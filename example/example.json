@@ -1,0 +1,76 @@
+{
+  "id": "example",
+  "name": "Example Plugin",
+  "version": "1.0.0",
+  "authors": [
+    "ME"
+  ],
+  "description": "An example plugin.",
+  "repository": "https://example.com",
+  "updatesUrl": "https://example.com/updates",
+  "availableGenres": [
+    "action",
+    "romance",
+    "yuri",
+    "boysLove",
+    "schoolLife",
+    "adventure",
+    "harem",
+    "speculativeFiction",
+    "war",
+    "suspense",
+    "fanFiction",
+    "comedy",
+    "magic",
+    "horror",
+    "historical",
+    "sports",
+    "mature",
+    "mecha"
+  ],
+  "configs": [
+    {
+      "key": "text_config",
+      "name": "Text Config",
+      "description": "A simple text configuration option.",
+      "type": "text",
+      "defaultValue": "Default Text"
+    },
+    {
+      "key": "number_config",
+      "name": "Number Config",
+      "description": "A simple number configuration option.",
+      "type": "number",
+      "defaultValue": 42
+    },
+    {
+      "key": "boolean_config",
+      "name": "Boolean Config",
+      "description": "A simple boolean configuration option.",
+      "type": "boolean",
+      "defaultValue": true
+    },
+    {
+      "key": "select_config",
+      "name": "Select Config",
+      "description": "A simple select configuration option.",
+      "type": "select",
+      "defaultValue": "option1",
+      "options": [
+        "option1",
+        "option2",
+        "option3"
+      ]
+    }
+  ],
+  "scripts": {
+    "getChapter": "async function a(e,t){console.log(`Retrieving chapter ${t.id} for manga ${e.title}`)}var r=a;export{r as default};\n",
+    "getDetailedManga": "async function e(a){console.log(`Retrieving detailed information for manga with ID: ${a}`)}var i=e;export{i as default};\n",
+    "isOnline": "async function n(){console.log(\"Checking if the plugin source is online\")}var e=n;export{e as default};\n",
+    "getImage": "async function g(e){console.log(`Retrieving image from URL: ${e}`)}var i=g;export{i as default};\n",
+    "getSuggestion": "async function g(e){console.log(`Retrieving suggestions for query: ${e}`)}var n=g;export{n as default};\n",
+    "search": "async function o(a,n){console.log(`Searching for manga with query: ${a} on page: ${n}`)}var r=o;export{r as default};\n",
+    "getList": "async function n(e,t,a){console.log(`Retrieving manga list for page ${e}, genre: ${t}, status: ${a}`)}var r=n;export{r as default};\n",
+    "getMangas": "async function a(n){console.log(`Retrieving mangas for IDs: ${n.join(\", \")}`)}var o=a;export{o as default};\n"
+  }
+}

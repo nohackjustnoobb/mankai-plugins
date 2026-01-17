@@ -1,0 +1,1 @@
+async function n(t){let r=await(await fetch(t,{headers:{referer:"http://www.dm5.com/dm5api/"}})).blob(),e=new FileReader;return e.readAsDataURL(r),new Promise(s=>{e.onloadend=()=>{let a=e.result;s(a.split(",")[1])}})}var i=n;export{i as default};
