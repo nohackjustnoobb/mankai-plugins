@@ -22,9 +22,6 @@ jobs:
 
       - name: Build Plugins
         working-directory: ./main
-        env:
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_REF_NAME: static
         run: deno task build
 
       - name: Checkout Static Repository

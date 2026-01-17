@@ -90,14 +90,14 @@ for await (const dirEntry of Deno.readDir(srcDir)) {
 }
 
 const repo = Deno.env.get("GITHUB_REPOSITORY");
-const branch = Deno.env.get("GITHUB_REF_NAME");
+const branch = "static";
 
 if (repo && branch) {
   console.log(`Create README.md for ${repo} on branch ${branch}`);
   let readmeContent =
     "# Built Plugins\n\n> This branch is auto-generated. Do not edit.\n\n";
   for (const plugin of builtPlugins) {
-    const url = `https://raw.githubusercontent.com/${repo}/${branch}/dist/${plugin.path}`;
+    const url = `https://raw.githubusercontent.com/${repo}/${branch}/${plugin.path}`;
     readmeContent += `### ${plugin.name} v${plugin.version}\n`;
     if (plugin.description) {
       readmeContent += `${plugin.description}\n\n`;
