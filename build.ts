@@ -3,6 +3,13 @@ import { denoPlugins } from "jsr:@luca/esbuild-deno-loader@^0.11.1";
 
 const srcDir = "./src";
 const distDir = "./dist";
+const builtPlugins: {
+  id: string;
+  name: string;
+  version: string;
+  description: string;
+  path: string;
+}[] = [];
 
 for await (const dirEntry of Deno.readDir(srcDir)) {
   if (!dirEntry.isDirectory || dirEntry.name === "utils") continue;
@@ -61,7 +68,7 @@ for await (const dirEntry of Deno.readDir(srcDir)) {
     if (!file.isFile || !file.name.endsWith(".js")) continue;
     const key = file.name.replace(/\.js$/, "");
     scripts[key] = decoder.decode(
-      Deno.readFileSync(`${outFolder}/${file.name}`)
+      Deno.readFileSync(`${outFolder}/${file.name}`),
     );
     console.log(`✅ ${key} added to ${id}.json`);
   }
@@ -70,9 +77,37 @@ for await (const dirEntry of Deno.readDir(srcDir)) {
   const encoder = new TextEncoder();
   Deno.writeFileSync(
     `${outFolder}/${id}.json`,
-    encoder.encode(JSON.stringify(meta, null, 2))
+    encoder.encode(JSON.stringify(meta, null, 2)),
   );
   console.log(`✅ ${id}.json created in ${outFolder}\n`);
+  builtPlugins.push({
+    id,
+    name: meta.name ?? id,
+    version: meta.version ?? "0.0.0",
+    description: meta.description ?? "",
+    path: `${dirEntry.name}/${id}.json`,
+  });
+}
+
+const repo = Deno.env.get("GITHUB_REPOSITORY");
+const branch = Deno.env.get("GITHUB_REF_NAME");
+
+if (repo && branch) {
+  console.log(`Create README.md for ${repo} on branch ${branch}`);
+  let readmeContent =
+    "# Built Plugins\n\n> This branch is auto-generated. Do not edit.\n\n";
+  for (const plugin of builtPlugins) {
+    const url = `https://raw.githubusercontent.com/${repo}/${branch}/dist/${plugin.path}`;
+    readmeContent += `### ${plugin.name} v${plugin.version}\n`;
+    if (plugin.description) {
+      readmeContent += `${plugin.description}\n\n`;
+    }
+    readmeContent += `\`\`\`\n${url}\n\`\`\`\n\n`;
+  }
+  Deno.writeTextFileSync(`${distDir}/README.md`, readmeContent);
+  console.log(`✅ README.md created in ${distDir}`);
+} else {
+  console.log("Skipping README generation (missing env vars)");
 }
 
 await stop();
