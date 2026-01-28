@@ -2,6 +2,8 @@
 
 This repository contains JavaScript plugins for [Mankai](https://github.com/nohackjustnoobb/Mankai).
 
+You can find the compiled plugins in the [static branch](https://github.com/nohackjustnoobb/Mankai-Plugins/tree/static).
+
 ## Runtime Environment
 
 The Mankai runtime overrides some built-in methods to integrate better with the app. Notably:
@@ -22,6 +24,17 @@ This project uses [Deno](https://deno.land/).
 ### Creating a New Plugin
 
 To develop a new plugin, copy the `src/example` directory to a new directory under `src/` (e.g., `src/my-plugin`), and replace the implementation with your own.
+
+#### meta.json
+
+Each plugin must include a `meta.json` file. Only the `id` field is required, all other fields are optional.
+
+##### getImageHeaders
+
+The `getImageHeaders` field controls how images are fetched:
+
+- If `null` or `undefined`: The plugin's `getImage` method will be called to fetch the image.
+- If defined (including `{}`): The app will fetch the image directly using the provided headers, and `getImage` will not be called.
 
 ### Build
 
