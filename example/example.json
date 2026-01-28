@@ -8,6 +8,9 @@
   "description": "An example plugin.",
   "repository": "https://example.com",
   "updatesUrl": "https://example.com/updates",
+  "getImageHeaders": {
+    "User-Agent": "ExamplePlugin/1.0"
+  },
   "availableGenres": [
     "action",
     "romance",
