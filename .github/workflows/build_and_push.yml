@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout Repository
@@ -16,7 +16,7 @@ jobs:
           path: main
 
       - name: Set up Deno
-        uses: denoland/setup-deno@main
+        uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
 

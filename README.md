@@ -1,8 +1,8 @@
 # Mankai Plugin
 
-This repository contains JavaScript plugins for [Mankai](https://github.com/nohackjustnoobb/Mankai).
+This repository contains JavaScript plugins for [mankai](https://github.com/nohackjustnoobb/mankai).
 
-You can find the compiled plugins in the [static branch](https://github.com/nohackjustnoobb/Mankai-Plugins/tree/static).
+You can find the compiled plugins in the [static branch](https://github.com/nohackjustnoobb/mankai-plugin/tree/static).
 
 ## Runtime Environment
 

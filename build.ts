@@ -1,8 +1,11 @@
-import { build, stop } from "https://deno.land/x/esbuild@v0.25.4/mod.js";
-import { denoPlugins } from "jsr:@luca/esbuild-deno-loader@^0.11.1";
+import { build, stop } from "https://deno.land/x/esbuild@v0.27.2/mod.js";
+import { denoPlugin } from "@deno/esbuild-plugin";
 
 const srcDir = "./src";
 const distDir = "./dist";
+
+const repo = Deno.env.get("GITHUB_REPOSITORY");
+const branch = "static";
 const builtPlugins: {
   id: string;
   name: string;
@@ -49,7 +52,7 @@ for await (const dirEntry of Deno.readDir(srcDir)) {
         .split("/")
         .pop()
         ?.replace(".ts", ".js")}`,
-      plugins: [...denoPlugins()],
+      plugins: [denoPlugin()],
       format: "esm",
       minify: true,
     });
@@ -74,6 +77,20 @@ for await (const dirEntry of Deno.readDir(srcDir)) {
   }
   meta.scripts = scripts;
 
+  if (repo) {
+    const repoUrl = `https://github.com/${repo}`;
+    const updatesUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${dirEntry.name}/${id}.json`;
+
+    if (!meta.repository) {
+      meta.repository = repoUrl;
+      console.log(`✅ Added repository to ${id}.json`);
+    }
+    if (!meta.updatesUrl) {
+      meta.updatesUrl = updatesUrl;
+      console.log(`✅ Added updatesUrl to ${id}.json`);
+    }
+  }
+
   const encoder = new TextEncoder();
   Deno.writeFileSync(
     `${outFolder}/${id}.json`,
@@ -88,9 +105,6 @@ for await (const dirEntry of Deno.readDir(srcDir)) {
     path: `${dirEntry.name}/${id}.json`,
   });
 }
-
-const repo = Deno.env.get("GITHUB_REPOSITORY");
-const branch = "static";
 
 if (repo && branch) {
   console.log(`Create README.md for ${repo} on branch ${branch}`);

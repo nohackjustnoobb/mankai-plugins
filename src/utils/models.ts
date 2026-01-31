@@ -30,6 +30,7 @@ enum Status {
 interface Chapter {
   id?: string;
   title?: string;
+  locked?: boolean;
 }
 
 interface Manga {
@@ -48,6 +49,7 @@ interface DetailedManga extends Manga {
   authors: string[];
   genres: Genre[];
   chapters: Record<string, Chapter[]>;
+  remarks?: string;
 }
 
 export { Genre, Status };
