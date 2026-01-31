@@ -1,1 +1,1 @@
-async function g(e){console.log(`Retrieving image from URL: ${e}`)}var i=g;export{i as default};
+async function o(e){console.log(`Retrieving image from URL: ${e}`)}var g=o;export{g as default};

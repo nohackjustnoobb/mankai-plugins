@@ -1,1 +1,1 @@
-async function n(e,t,a){console.log(`Retrieving manga list for page ${e}, genre: ${t}, status: ${a}`)}var r=n;export{r as default};
+async function a(e,t,n){console.log(`Retrieving manga list for page ${e}, genre: ${t}, status: ${n}`)}var g=a;export{g as default};

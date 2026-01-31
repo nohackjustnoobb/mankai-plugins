@@ -1,1 +1,1 @@
-async function o(a,n){console.log(`Searching for manga with query: ${a} on page: ${n}`)}var r=o;export{r as default};
+async function n(a,e){console.log(`Searching for manga with query: ${a} on page: ${e}`)}var o=n;export{o as default};
