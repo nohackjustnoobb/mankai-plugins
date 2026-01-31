@@ -1,4 +1,4 @@
-import { build, stop } from "https://deno.land/x/esbuild@v0.27.2/mod.js";
+import { build, stop } from "esbuild";
 import { denoPlugin } from "@deno/esbuild-plugin";
 
 const srcDir = "./src";
