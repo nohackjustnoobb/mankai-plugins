@@ -140,7 +140,7 @@ async function toManga(data: any): Promise<Manga> {
     status: data.mangaIsOver ? Status.Ended : Status.OnGoing,
     latestChapter: {
       id: data.mangaNewsectionId?.toString(), // <- not sure if this is correct
-      title: data.mangaNewestContent ?? data.mangaNewsectionName,
+      title: await s2t(data.mangaNewestContent ?? data.mangaNewsectionName),
     },
   };
 }
