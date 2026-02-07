@@ -68,12 +68,12 @@
   ],
   "scripts": {
     "isOnline": "async function n(){console.log(\"Checking if the plugin source is online\")}var e=n;export{e as default};\n",
-    "getDetailedManga": "async function a(e){console.log(`Retrieving detailed information for manga with ID: ${e}`)}var n=a;export{n as default};\n",
-    "getList": "async function a(e,t,n){console.log(`Retrieving manga list for page ${e}, genre: ${t}, status: ${n}`)}var g=a;export{g as default};\n",
-    "getImage": "async function o(e){console.log(`Retrieving image from URL: ${e}`)}var g=o;export{g as default};\n",
+    "getMangas": "async function o(n){console.log(`Retrieving mangas for IDs: ${n.join(\", \")}`)}var a=o;export{a as default};\n",
     "getSuggestion": "async function o(e){console.log(`Retrieving suggestions for query: ${e}`)}var g=o;export{g as default};\n",
     "getChapter": "async function a(e,t){console.log(`Retrieving chapter ${t.id} for manga ${e.title}`)}var n=a;export{n as default};\n",
-    "getMangas": "async function o(n){console.log(`Retrieving mangas for IDs: ${n.join(\", \")}`)}var a=o;export{a as default};\n",
-    "search": "async function n(a,e){console.log(`Searching for manga with query: ${a} on page: ${e}`)}var o=n;export{o as default};\n"
+    "getDetailedManga": "async function a(e){console.log(`Retrieving detailed information for manga with ID: ${e}`)}var n=a;export{n as default};\n",
+    "search": "async function n(a,e){console.log(`Searching for manga with query: ${a} on page: ${e}`)}var o=n;export{o as default};\n",
+    "getImage": "async function o(e){console.log(`Retrieving image from URL: ${e}`)}var g=o;export{g as default};\n",
+    "getList": "async function a(e,t,n){console.log(`Retrieving manga list for page ${e}, genre: ${t}, status: ${n}`)}var g=a;export{g as default};\n"
   }
 }
