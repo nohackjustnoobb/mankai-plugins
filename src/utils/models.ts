@@ -28,7 +28,7 @@ enum Status {
 }
 
 interface Chapter {
-  id?: string;
+  id: string;
   title?: string;
   locked?: boolean;
 }
