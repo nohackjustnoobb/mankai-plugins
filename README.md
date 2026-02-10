@@ -53,3 +53,7 @@ To run in development mode:
 ```bash
 deno task dev
 ```
+
+## Disclaimer
+
+The developers of this project do not assume any responsibility for how these plugins are used. This code is provided for educational and research purposes only. Users are solely responsible for their actions and must ensure they comply with all applicable laws and regulations.
