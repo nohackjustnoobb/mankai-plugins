@@ -203,7 +203,7 @@ async function toDetailedManga(data: any): Promise<DetailedManga> {
   return {
     id: data.mangaId.toString(),
     title: await s2t(data.mangaName),
-    cover: data.mangaCoverimageUrl,
+    cover: data.mangaPicimageUrl,
     status: data.mangaIsOver ? Status.Ended : Status.OnGoing,
     latestChapter: {
       id: data.mangaNewsectionId?.toString(), // <- not sure if this is correct
