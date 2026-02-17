@@ -27,6 +27,12 @@ enum Status {
   Ended = 2,
 }
 
+enum ReadingDirection {
+  LeftToRight = 1,
+  RightToLeft = 2,
+  Vertical = 3,
+}
+
 interface Chapter {
   id: string;
   title?: string;
@@ -44,6 +50,7 @@ interface Manga {
 }
 
 interface DetailedManga extends Manga {
+  readingDirection?: ReadingDirection;
   description?: string;
   updatedAt?: number;
   authors: string[];
@@ -52,5 +59,5 @@ interface DetailedManga extends Manga {
   remarks?: string;
 }
 
-export { Genre, Status };
+export { Genre, Status, ReadingDirection };
 export type { Chapter, Manga, DetailedManga };

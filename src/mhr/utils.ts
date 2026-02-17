@@ -4,6 +4,7 @@ import {
   DetailedManga,
   Genre,
   Manga,
+  ReadingDirection,
   Status,
 } from "../utils/models.ts";
 
@@ -209,6 +210,7 @@ async function toDetailedManga(data: any): Promise<DetailedManga> {
       id: data.mangaNewsectionId?.toString(), // <- not sure if this is correct
       title: await s2t(data.mangaNewestContent ?? data.mangaNewsectionName),
     },
+    readingDirection: ReadingDirection.RightToLeft,
     description: await s2t(data.mangaIntro),
     updatedAt,
     authors: data.mangaAuthors,
