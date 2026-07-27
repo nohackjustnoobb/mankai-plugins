@@ -38,6 +38,13 @@
       "defaultValue": "Default Text"
     },
     {
+      "key": "password_config",
+      "name": "Password Config",
+      "description": "A simple password configuration option.",
+      "type": "password",
+      "defaultValue": "DefaultPassword"
+    },
+    {
       "key": "number_config",
       "name": "Number Config",
       "description": "A simple number configuration option.",

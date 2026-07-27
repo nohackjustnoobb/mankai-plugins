@@ -1,4 +1,6 @@
-async function getImage(imageUrl: string): Promise<string> {
+async function getImage(
+  imageUrl: string,
+): Promise<string | { url: string; headers: Record<string, string> }> {
   const response = await fetch(imageUrl, {
     headers: { referer: "http://www.dm5.com/dm5api/" },
   });
