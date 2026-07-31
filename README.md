@@ -2,7 +2,7 @@
 
 > This branch is auto-generated. Do not edit.
 
-### 漫畫人 v1.0.0
+### 漫畫人 v1.0.1
 漫畫人插件
 
 ```
