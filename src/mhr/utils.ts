@@ -192,9 +192,9 @@ async function toDetailedManga(data: any): Promise<DetailedManga> {
     new Date(data.mangaNewestTime).getTime() - 8 * 60 * 60 * 1000; // Convert from UTC+8 to UTC
 
   const chaptersEntries = [
-    ["volume", await toChapters(data.mangaRolls)],
-    ["extra", await toChapters(data.mangaEpisode)],
     ["serial", await toChapters(data.mangaWords)],
+    ["extra", await toChapters(data.mangaEpisode)],
+    ["volume", await toChapters(data.mangaRolls)],
   ];
 
   const chapters = Object.fromEntries(
