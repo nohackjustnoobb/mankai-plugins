@@ -1,6 +1,7 @@
 import { md5 } from "js-md5";
 import {
   Chapter,
+  ChapterGroup,
   DetailedManga,
   Genre,
   Manga,
@@ -191,15 +192,11 @@ async function toDetailedManga(data: any): Promise<DetailedManga> {
   const updatedAt =
     new Date(data.mangaNewestTime).getTime() - 8 * 60 * 60 * 1000; // Convert from UTC+8 to UTC
 
-  const chaptersEntries = [
-    ["serial", await toChapters(data.mangaWords)],
-    ["extra", await toChapters(data.mangaEpisode)],
-    ["volume", await toChapters(data.mangaRolls)],
-  ];
-
-  const chapters = Object.fromEntries(
-    chaptersEntries.filter(([, chapters]) => chapters.length > 0),
-  );
+  const chapters: ChapterGroup[] = [
+    { title: "serial", chapters: await toChapters(data.mangaWords) },
+    { title: "extra", chapters: await toChapters(data.mangaEpisode) },
+    { title: "volume", chapters: await toChapters(data.mangaRolls) },
+  ].filter(({ chapters }) => chapters.length > 0);
 
   return {
     id: data.mangaId.toString(),

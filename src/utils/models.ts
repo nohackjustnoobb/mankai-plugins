@@ -39,6 +39,11 @@ interface Chapter {
   locked?: boolean;
 }
 
+interface ChapterGroup {
+  title: string;
+  chapters: Chapter[];
+}
+
 interface Manga {
   id: string;
   title?: string;
@@ -55,9 +60,9 @@ interface DetailedManga extends Manga {
   updatedAt?: number;
   authors: string[];
   genres: Genre[];
-  chapters: Record<string, Chapter[]>;
+  chapters: ChapterGroup[];
   remarks?: string;
 }
 
-export { Genre, Status, ReadingDirection };
-export type { Chapter, Manga, DetailedManga };
+export { Genre, ReadingDirection, Status };
+export type { Chapter, ChapterGroup, DetailedManga, Manga };
