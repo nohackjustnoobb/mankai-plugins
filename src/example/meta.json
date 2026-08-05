@@ -66,5 +66,10 @@
       "defaultValue": "option1",
       "options": ["option1", "option2", "option3"]
     }
-  ]
+  ],
+  "cooldown": {
+    "default": 1000,
+    "getImage": 500,
+    "getImageConcurrency": 10
+  }
 }
