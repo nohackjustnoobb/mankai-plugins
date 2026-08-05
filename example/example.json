@@ -73,6 +73,17 @@
       ]
     }
   ],
+  "cooldown": {
+    "isOnline": 1000,
+    "getSuggestions": 1000,
+    "search": 1000,
+    "getList": 1000,
+    "getMangas": 1000,
+    "getDetailedManga": 1000,
+    "getChapter": 1000,
+    "getImage": 500,
+    "getImageConcurrency": 10
+  },
   "scripts": {
     "getChapter": "async function a(e,t){console.log(`Retrieving chapter ${t.id} for manga ${e.title}`)}var n=a;export{n as default};\n",
     "getList": "async function a(e,t,n){console.log(`Retrieving manga list for page ${e}, genre: ${t}, status: ${n}`)}var g=a;export{g as default};\n",
