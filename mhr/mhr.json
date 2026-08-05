@@ -28,13 +28,7 @@
   ],
   "configs": [],
   "cooldown": {
-    "isOnline": 500,
-    "getSuggestions": 500,
-    "search": 500,
-    "getList": 500,
-    "getMangas": 500,
-    "getDetailedManga": 500,
-    "getChapter": 500,
+    "default": 500,
     "getImageConcurrency": 10
   },
   "scripts": {

@@ -74,13 +74,7 @@
     }
   ],
   "cooldown": {
-    "isOnline": 1000,
-    "getSuggestions": 1000,
-    "search": 1000,
-    "getList": 1000,
-    "getMangas": 1000,
-    "getDetailedManga": 1000,
-    "getChapter": 1000,
+    "default": 1000,
     "getImage": 500,
     "getImageConcurrency": 10
   },
