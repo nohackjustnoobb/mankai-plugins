@@ -20,6 +20,7 @@
     "adventure",
     "harem",
     "speculativeFiction",
+    "otokonoko",
     "war",
     "suspense",
     "fanFiction",
@@ -78,14 +79,28 @@
     "getImage": 500,
     "getImageConcurrency": 10
   },
+  "capabilities": [
+    "onlineCheck",
+    "suggestions",
+    "list",
+    "listByGenre",
+    "listByStatus",
+    "search",
+    "searchByGenre",
+    "searchByStatus",
+    "mangaDetails",
+    "batchMangas",
+    "chapter",
+    "image"
+  ],
   "scripts": {
-    "getChapter": "async function a(e,t){console.log(`Retrieving chapter ${t.id} for manga ${e.title}`)}var n=a;export{n as default};\n",
-    "getList": "async function a(e,t,n){console.log(`Retrieving manga list for page ${e}, genre: ${t}, status: ${n}`)}var g=a;export{g as default};\n",
-    "search": "async function n(a,e){console.log(`Searching for manga with query: ${a} on page: ${e}`)}var o=n;export{o as default};\n",
     "isOnline": "async function n(){console.log(\"Checking if the plugin source is online\")}var e=n;export{e as default};\n",
+    "getChapter": "async function a(e,t){console.log(`Retrieving chapter ${t.id} for manga ${e.title}`)}var n=a;export{n as default};\n",
+    "search": "var t=(function(o){return o.All=\"all\",o.Action=\"action\",o.Romance=\"romance\",o.Yuri=\"yuri\",o.BoysLove=\"boysLove\",o.SchoolLife=\"schoolLife\",o.Adventure=\"adventure\",o.Harem=\"harem\",o.SpeculativeFiction=\"speculativeFiction\",o.War=\"war\",o.Suspense=\"suspense\",o.FanFiction=\"fanFiction\",o.Comedy=\"comedy\",o.Magic=\"magic\",o.Horror=\"horror\",o.Historical=\"historical\",o.Sports=\"sports\",o.Mature=\"mature\",o.Mecha=\"mecha\",o.Otokonoko=\"otokonoko\",o})(t||{}),a=(function(o){return o[o.Any=0]=\"Any\",o[o.OnGoing=1]=\"OnGoing\",o[o.Ended=2]=\"Ended\",o})(a||{});async function l(o,c,i=t.All,r=a.Any){console.log(`Searching for manga with query: ${o} on page: ${c}, genre: ${i}, status: ${r}`)}var f=l;export{f as default};\n",
+    "getMangas": "async function o(n){console.log(`Retrieving mangas for IDs: ${n.join(\", \")}`)}var a=o;export{a as default};\n",
+    "getList": "var t=(function(o){return o.All=\"all\",o.Action=\"action\",o.Romance=\"romance\",o.Yuri=\"yuri\",o.BoysLove=\"boysLove\",o.SchoolLife=\"schoolLife\",o.Adventure=\"adventure\",o.Harem=\"harem\",o.SpeculativeFiction=\"speculativeFiction\",o.War=\"war\",o.Suspense=\"suspense\",o.FanFiction=\"fanFiction\",o.Comedy=\"comedy\",o.Magic=\"magic\",o.Horror=\"horror\",o.Historical=\"historical\",o.Sports=\"sports\",o.Mature=\"mature\",o.Mecha=\"mecha\",o.Otokonoko=\"otokonoko\",o})(t||{}),i=(function(o){return o[o.Any=0]=\"Any\",o[o.OnGoing=1]=\"OnGoing\",o[o.Ended=2]=\"Ended\",o})(i||{});async function l(o,a=t.All,c=i.Any){console.log(`Retrieving manga list for page ${o}, genre: ${a}, status: ${c}`)}var u=l;export{u as default};\n",
     "getDetailedManga": "async function a(e){console.log(`Retrieving detailed information for manga with ID: ${e}`)}var n=a;export{n as default};\n",
     "getSuggestion": "async function o(e){console.log(`Retrieving suggestions for query: ${e}`)}var g=o;export{g as default};\n",
-    "getImage": "async function o(e){console.log(`Retrieving image from URL: ${e}`)}var g=o;export{g as default};\n",
-    "getMangas": "async function o(n){console.log(`Retrieving mangas for IDs: ${n.join(\", \")}`)}var a=o;export{a as default};\n"
+    "getImage": "async function o(e){console.log(`Retrieving image from URL: ${e}`)}var g=o;export{g as default};\n"
   }
 }
