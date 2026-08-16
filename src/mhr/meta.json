@@ -1,7 +1,7 @@
 {
   "id": "mhr",
   "name": "漫畫人",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "漫畫人插件",
   "getImageHeaders": {
     "referer": "http://www.dm5.com/dm5api/"
@@ -27,6 +27,18 @@
     "mecha"
   ],
   "configs": [],
+  "capabilities": [
+    "onlineCheck",
+    "suggestions",
+    "list",
+    "listByGenre",
+    "listByStatus",
+    "search",
+    "mangaDetails",
+    "batchMangas",
+    "chapter",
+    "image"
+  ],
   "cooldown": {
     "default": 500,
     "getImageConcurrency": 10

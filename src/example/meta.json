@@ -18,6 +18,7 @@
     "adventure",
     "harem",
     "speculativeFiction",
+    "otokonoko",
     "war",
     "suspense",
     "fanFiction",
@@ -71,5 +72,19 @@
     "default": 1000,
     "getImage": 500,
     "getImageConcurrency": 10
-  }
+  },
+  "capabilities": [
+    "onlineCheck",
+    "suggestions",
+    "list",
+    "listByGenre",
+    "listByStatus",
+    "search",
+    "searchByGenre",
+    "searchByStatus",
+    "mangaDetails",
+    "batchMangas",
+    "chapter",
+    "image"
+  ]
 }

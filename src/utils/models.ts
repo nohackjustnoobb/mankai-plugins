@@ -58,9 +58,9 @@ interface DetailedManga extends Manga {
   readingDirection?: ReadingDirection;
   description?: string;
   updatedAt?: number; // millisecond since epoch
-  authors: string[];
-  genres: Genre[];
-  chapters: ChapterGroup[];
+  authors?: string[];
+  genres?: Genre[];
+  chapters?: ChapterGroup[];
   remarks?: string;
 }
 

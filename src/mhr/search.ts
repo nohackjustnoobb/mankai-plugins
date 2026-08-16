@@ -1,8 +1,13 @@
-import { Manga } from "../utils/models.ts";
+import { Genre, Manga, Status } from "../utils/models.ts";
 import getMangas from "./getMangas.ts";
 import { BASE_URL, get, LIMIT } from "./utils.ts";
 
-async function search(query: string, page: number): Promise<Manga[]> {
+async function search(
+  query: string,
+  page: number,
+  _genre: Genre = Genre.All,
+  _status: Status = Status.Any,
+): Promise<Manga[]> {
   const params: Record<string, string> = {
     keywords: await t2s(query),
     start: ((page - 1) * LIMIT).toString(),

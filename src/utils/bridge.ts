@@ -1,10 +1,14 @@
 declare global {
+  interface ConfigValue {
+    key: string;
+    value: unknown;
+  }
+
   /**
    * Get the configurations.
    * @returns The configurations.
    */
-  // deno-lint-ignore no-explicit-any
-  const getConfigs: () => Record<string, any>[];
+  const getConfigs: () => ConfigValue[];
 
   /**
    * Convert Traditional Chinese to Simplified Chinese.
@@ -30,15 +34,16 @@ declare global {
   /**
    * Get a value from the storage.
    * @param key The key to get.
-   * @returns The value.
+   * @returns The value, or null when it does not exist.
    */
-  const getValue: (key: string) => Promise<string | undefined | null>;
+  const getValue: (key: string) => Promise<string | null>;
 
   /**
    * Remove a value from the storage.
    * @param key The key to remove.
+   * @returns Whether a value was removed.
    */
-  const removeValue: (key: string) => Promise<void>;
+  const removeValue: (key: string) => Promise<boolean>;
 }
 
 export {};

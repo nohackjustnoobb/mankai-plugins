@@ -2,12 +2,12 @@ import { Genre, Manga, Status } from "../utils/models.ts";
 
 async function getList(
   page: number,
-  genre: Genre,
-  status: Status
+  genre: Genre = Genre.All,
+  status: Status = Status.Any,
 ): Promise<Manga[]> {
   // TODO: Implement the logic to retrieve a list of manga
   console.log(
-    `Retrieving manga list for page ${page}, genre: ${genre}, status: ${status}`
+    `Retrieving manga list for page ${page}, genre: ${genre}, status: ${status}`,
   );
 }
 
