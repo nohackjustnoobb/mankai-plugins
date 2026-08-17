@@ -24,7 +24,7 @@ enum Genre {
 enum Status {
   Any = 0,
   OnGoing = 1,
-  Ended = 2,
+  Completed = 2,
 }
 
 enum ReadingDirection {

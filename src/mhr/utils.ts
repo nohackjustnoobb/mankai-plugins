@@ -138,7 +138,7 @@ async function toManga(data: any): Promise<Manga> {
     id: data.mangaId.toString(),
     title: await s2t(data.mangaName),
     cover: data.mangaCoverimageUrl,
-    status: data.mangaIsOver ? Status.Ended : Status.OnGoing,
+    status: data.mangaIsOver ? Status.Completed : Status.OnGoing,
     latestChapter: {
       id: data.mangaNewsectionId?.toString(), // <- not sure if this is correct
       title: await s2t(data.mangaNewestContent ?? data.mangaNewsectionName),
@@ -201,7 +201,7 @@ async function toDetailedManga(data: any): Promise<DetailedManga> {
     id: data.mangaId.toString(),
     title: await s2t(data.mangaName),
     cover: data.mangaPicimageUrl,
-    status: data.mangaIsOver ? Status.Ended : Status.OnGoing,
+    status: data.mangaIsOver ? Status.Completed : Status.OnGoing,
     latestChapter: {
       id: data.mangaNewsectionId?.toString(), // <- not sure if this is correct
       title: await s2t(data.mangaNewestContent ?? data.mangaNewsectionName),
