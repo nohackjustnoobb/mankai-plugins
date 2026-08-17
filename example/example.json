@@ -88,6 +88,7 @@
     "search",
     "searchByGenre",
     "searchByStatus",
+    "searchByAuthor",
     "mangaDetails",
     "batchMangas",
     "chapter",
@@ -96,7 +97,7 @@
   "scripts": {
     "isOnline": "async function n(){console.log(\"Checking if the plugin source is online\")}var e=n;export{e as default};\n",
     "getChapter": "async function a(e,t){console.log(`Retrieving chapter ${t.id} for manga ${e.title}`)}var n=a;export{n as default};\n",
-    "search": "var t=(function(o){return o.All=\"all\",o.Action=\"action\",o.Romance=\"romance\",o.Yuri=\"yuri\",o.BoysLove=\"boysLove\",o.SchoolLife=\"schoolLife\",o.Adventure=\"adventure\",o.Harem=\"harem\",o.SpeculativeFiction=\"speculativeFiction\",o.War=\"war\",o.Suspense=\"suspense\",o.FanFiction=\"fanFiction\",o.Comedy=\"comedy\",o.Magic=\"magic\",o.Horror=\"horror\",o.Historical=\"historical\",o.Sports=\"sports\",o.Mature=\"mature\",o.Mecha=\"mecha\",o.Otokonoko=\"otokonoko\",o})(t||{}),a=(function(o){return o[o.Any=0]=\"Any\",o[o.OnGoing=1]=\"OnGoing\",o[o.Completed=2]=\"Completed\",o})(a||{});async function r(o,c,i=t.All,l=a.Any){console.log(`Searching for manga with query: ${o} on page: ${c}, genre: ${i}, status: ${l}`)}var f=r;export{f as default};\n",
+    "search": "var t=(function(o){return o.All=\"all\",o.Action=\"action\",o.Romance=\"romance\",o.Yuri=\"yuri\",o.BoysLove=\"boysLove\",o.SchoolLife=\"schoolLife\",o.Adventure=\"adventure\",o.Harem=\"harem\",o.SpeculativeFiction=\"speculativeFiction\",o.War=\"war\",o.Suspense=\"suspense\",o.FanFiction=\"fanFiction\",o.Comedy=\"comedy\",o.Magic=\"magic\",o.Horror=\"horror\",o.Historical=\"historical\",o.Sports=\"sports\",o.Mature=\"mature\",o.Mecha=\"mecha\",o.Otokonoko=\"otokonoko\",o})(t||{}),a=(function(o){return o[o.Any=0]=\"Any\",o[o.OnGoing=1]=\"OnGoing\",o[o.Completed=2]=\"Completed\",o})(a||{});async function u(o,c,i=t.All,l=a.Any,r=!1){console.log(`Searching for manga by ${r?\"author\":\"title\"} with query: ${o} on page: ${c}, genre: ${i}, status: ${l}`)}var h=u;export{h as default};\n",
     "getMangas": "async function o(n){console.log(`Retrieving mangas for IDs: ${n.join(\", \")}`)}var a=o;export{a as default};\n",
     "getList": "var t=(function(o){return o.All=\"all\",o.Action=\"action\",o.Romance=\"romance\",o.Yuri=\"yuri\",o.BoysLove=\"boysLove\",o.SchoolLife=\"schoolLife\",o.Adventure=\"adventure\",o.Harem=\"harem\",o.SpeculativeFiction=\"speculativeFiction\",o.War=\"war\",o.Suspense=\"suspense\",o.FanFiction=\"fanFiction\",o.Comedy=\"comedy\",o.Magic=\"magic\",o.Horror=\"horror\",o.Historical=\"historical\",o.Sports=\"sports\",o.Mature=\"mature\",o.Mecha=\"mecha\",o.Otokonoko=\"otokonoko\",o})(t||{}),i=(function(o){return o[o.Any=0]=\"Any\",o[o.OnGoing=1]=\"OnGoing\",o[o.Completed=2]=\"Completed\",o})(i||{});async function l(o,a=t.All,c=i.Any){console.log(`Retrieving manga list for page ${o}, genre: ${a}, status: ${c}`)}var u=l;export{u as default};\n",
     "getDetailedManga": "async function a(e){console.log(`Retrieving detailed information for manga with ID: ${e}`)}var n=a;export{n as default};\n",
