@@ -9,7 +9,7 @@ An example plugin.
 https://raw.githubusercontent.com/nohackjustnoobb/mankai-plugins/static/example/example.json
 ```
 
-### 漫畫人 v1.0.5
+### 漫畫人 v1.0.6
 漫畫人插件
 
 ```
