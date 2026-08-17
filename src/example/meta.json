@@ -82,6 +82,7 @@
     "search",
     "searchByGenre",
     "searchByStatus",
+    "searchByAuthor",
     "mangaDetails",
     "batchMangas",
     "chapter",

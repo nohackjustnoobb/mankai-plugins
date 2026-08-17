@@ -1,7 +1,7 @@
 {
   "id": "mhr",
   "name": "漫畫人",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "漫畫人插件",
   "getImageHeaders": {
     "referer": "http://www.dm5.com/dm5api/"
@@ -34,6 +34,7 @@
     "listByGenre",
     "listByStatus",
     "search",
+    "searchByAuthor",
     "mangaDetails",
     "batchMangas",
     "chapter",

@@ -7,6 +7,7 @@ async function search(
   page: number,
   _genre: Genre = Genre.All,
   _status: Status = Status.Any,
+  _isAuthor: boolean = false,
 ): Promise<Manga[]> {
   const params: Record<string, string> = {
     keywords: await t2s(query),
