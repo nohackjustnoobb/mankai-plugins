@@ -9,7 +9,7 @@ A template plugin.
 https://raw.githubusercontent.com/nohackjustnoobb/mankai-plugins/static/template/template.json
 ```
 
-### 漫畫櫃 v1.0.0
+### 漫畫櫃 v1.0.1
 漫畫櫃插件
 
 ```
