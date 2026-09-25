@@ -249,6 +249,7 @@ function parseManga(id: string, html: string): DetailedManga {
 
   const result: DetailedManga = {
     id,
+    externalLink: new URL(`/comic/${id}/`, BASE_URL).href,
     title,
     cover,
     status: bookCover.querySelector("span.finish")

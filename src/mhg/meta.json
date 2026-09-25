@@ -1,7 +1,7 @@
 {
   "id": "mhg",
   "name": "漫畫櫃",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "漫畫櫃插件",
   "getImageHeaders": {
     "Referer": "https://tw.manhuagui.com",

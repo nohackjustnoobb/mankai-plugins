@@ -64,6 +64,7 @@ interface MangaUpdate extends Manga {
 }
 
 interface DetailedManga extends Manga {
+  externalLink?: string;
   readingDirection?: ReadingDirection;
   description?: string;
   updatedAt?: number; // millisecond since epoch
