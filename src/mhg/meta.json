@@ -1,0 +1,47 @@
+{
+  "id": "mhg",
+  "name": "漫畫櫃",
+  "version": "1.0.1",
+  "description": "漫畫櫃插件",
+  "getImageHeaders": {
+    "Referer": "https://tw.manhuagui.com",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+  },
+  "availableGenres": [
+    "action",
+    "romance",
+    "yuri",
+    "boysLove",
+    "schoolLife",
+    "adventure",
+    "harem",
+    "speculativeFiction",
+    "war",
+    "suspense",
+    "comedy",
+    "magic",
+    "horror",
+    "historical",
+    "sports",
+    "mecha",
+    "otokonoko"
+  ],
+  "configs": [],
+  "capabilities": [
+    "onlineCheck",
+    "list",
+    "listByGenre",
+    "listByStatus",
+    "search",
+    "searchByAuthor",
+    "mangaDetails",
+    "mangaUpdates",
+    "chapter",
+    "image"
+  ],
+  "cooldown": {
+    "default": 5000,
+    "getImage": 500,
+    "getImageConcurrency": 3
+  }
+}
