@@ -1,0 +1,67 @@
+{
+  "id": "mangadex",
+  "name": "MangaDex",
+  "version": "1.0.0",
+  "description": "Browse and read manga from MangaDex with configurable chapter languages and image quality.",
+  "getImageHeaders": {},
+  "availableGenres": [
+    "action",
+    "romance",
+    "yuri",
+    "boysLove",
+    "schoolLife",
+    "adventure",
+    "harem",
+    "speculativeFiction",
+    "war",
+    "suspense",
+    "fanFiction",
+    "comedy",
+    "magic",
+    "horror",
+    "historical",
+    "sports",
+    "mature",
+    "mecha",
+    "otokonoko"
+  ],
+  "configs": [
+    {
+      "key": "languages",
+      "name": "Chapter languages",
+      "description": "Comma-separated MangaDex language codes, in title preference order (e.g. en,zh-hk). zh is Simplified Chinese, zh-hk is Traditional Chinese.",
+      "type": "text",
+      "defaultValue": "en"
+    },
+    {
+      "key": "imageQuality",
+      "name": "Image quality",
+      "type": "select",
+      "defaultValue": "original",
+      "options": ["original", "data-saver"]
+    },
+    {
+      "key": "includeMature",
+      "name": "Include mature titles",
+      "description": "Include erotica and pornographic titles in browsing and search. The Mature genre explicitly searches those ratings.",
+      "type": "boolean",
+      "defaultValue": false
+    }
+  ],
+  "capabilities": [
+    "onlineCheck",
+    "suggestions",
+    "list",
+    "listByGenre",
+    "listByStatus",
+    "search",
+    "searchByGenre",
+    "searchByStatus",
+    "searchByAuthor",
+    "mangaDetails",
+    "mangaUpdates",
+    "chapter",
+    "image"
+  ],
+  "cooldown": { "default": 1600, "getImage": 100, "getImageConcurrency": 4 }
+}
