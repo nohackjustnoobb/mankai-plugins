@@ -1,6 +1,6 @@
 # MangaDex
 
-This plugin supports browsing, title and author search, genre and status filters, suggestions, manga details, library update checks, and chapter images. It uses the public [MangaDex API](https://api.mangadex.org/docs/) without an account.
+This plugin supports browsing, title and author search, genre and status filters, suggestions, manga details, batch manga lookup, library update checks, and chapter images. It uses the public [MangaDex API](https://api.mangadex.org/docs/) without an account.
 
 ## Settings
 
@@ -12,6 +12,10 @@ This plugin supports browsing, title and author search, genre and status filters
 
 Chapter lists include readable, published chapters hosted on MangaDex. External, unavailable, and empty chapters are excluded. Each chapter keeps its translation language and scanlation group credits. Details link back to MangaDex.
 
-Library update checks fetch manga metadata in batches of up to 100 IDs and compare the latest uploaded chapter ID with the saved chapter ID. MangaDex's latest-upload ID covers all languages, so uploads in any language can trigger updates. Chapter reading still uses the configured languages.
+List results keep the chapter title for display when MangaDex provides a chapter number without a latest-upload ID. Batch lookup and update checks require a latest-upload ID to return a latest chapter.
+
+Batch manga lookup fetches metadata in batches of up to 100 unique IDs, includes all content ratings, and returns found titles in the requested order. Missing titles are omitted.
+
+Library update checks share the batched metadata requests and compare only the latest uploaded chapter ID with the saved chapter ID. A chapter number without an upload ID does not trigger an update. MangaDex's latest-upload ID covers all languages, so uploads in any language can trigger updates. Chapter reading still uses the configured languages.
 
 MangaDex limits chapter feeds to 10,000 results.
