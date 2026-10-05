@@ -22,7 +22,19 @@ async function getList(
 
   const result = await apiGet<Collection<MangaData>>("/manga", params);
 
-  return result.data.map(toManga);
+  return result.data.map((data) => {
+    const manga = toManga(data);
+
+    // List results can display a chapter number without an upload ID.
+    if (!manga.latestChapter && data.attributes.lastChapter) {
+      manga.latestChapter = {
+        id: data.attributes.lastChapter,
+        title: `Ch. ${data.attributes.lastChapter}`,
+      };
+    }
+
+    return manga;
+  });
 }
 
 export default getList;

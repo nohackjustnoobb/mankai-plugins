@@ -171,6 +171,27 @@ function mangaParams(
   return params;
 }
 
+async function getMangaMetadata(mangaIds: string[]): Promise<MangaData[]> {
+  const ids = [...new Set(mangaIds)];
+  const metadata = new Map<string, MangaData>();
+
+  for (let offset = 0; offset < ids.length; offset += 100) {
+    const params = new URLSearchParams({ limit: "100" });
+    addArray(params, "ids", ids.slice(offset, offset + 100));
+    addArray(params, "includes", ["cover_art"]);
+    addArray(params, "contentRating", CONTENT_RATINGS);
+
+    const result = await apiGet<Collection<MangaData>>("/manga", params);
+
+    for (const data of result.data) metadata.set(data.id, data);
+  }
+
+  return ids.flatMap((id) => {
+    const data = metadata.get(id);
+    return data ? [data] : [];
+  });
+}
+
 function toManga(data: MangaData): Manga {
   const fileName = data.relationships.find((rel) => rel.type === "cover_art")
     ?.attributes?.fileName;
@@ -184,12 +205,12 @@ function toManga(data: MangaData): Manga {
     status: ["completed", "cancelled"].includes(data.attributes.status)
       ? Status.Completed
       : Status.OnGoing,
-    latestChapter: data.attributes.lastChapter
+    latestChapter: data.attributes.latestUploadedChapter
       ? {
-          id:
-            data.attributes.latestUploadedChapter ||
-            data.attributes.lastChapter,
-          title: `Ch. ${data.attributes.lastChapter}`,
+          id: data.attributes.latestUploadedChapter,
+          title: data.attributes.lastChapter
+            ? `Ch. ${data.attributes.lastChapter}`
+            : undefined,
         }
       : undefined,
   };
@@ -310,6 +331,7 @@ export {
   configValue,
   CONTENT_RATINGS,
   getChapterFeed,
+  getMangaMetadata,
   LIMIT,
   localizedText,
   mangaParams,
