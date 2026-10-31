@@ -70,6 +70,7 @@ interface DetailedManga extends Manga {
   updatedAt?: number; // millisecond since epoch
   authors?: string[];
   genres?: Genre[];
+  customGenres?: string[];
   chapters?: ChapterGroup[];
   remarks?: string;
 }

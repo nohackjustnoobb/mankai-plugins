@@ -224,6 +224,7 @@ function parseManga(id: string, html: string): DetailedManga {
   )
     .map(text)
     .filter(Boolean);
+  const customGenres = new Set<string>();
   const genres = Array.from(
     document.querySelectorAll(
       "ul.detail-list > li:nth-child(2) > span:nth-child(1) > a",
@@ -232,8 +233,13 @@ function parseManga(id: string, html: string): DetailedManga {
     const slug = (anchor.getAttribute("href") ?? "").match(
       /\/list\/([^/]+)\//u,
     )?.[1];
-    const genre = slug ? GENRES[slug] : undefined;
-    return genre === undefined ? [] : [genre];
+    const genre =
+      slug && Object.hasOwn(GENRES, slug) ? GENRES[slug] : undefined;
+    if (genre !== undefined) return [genre];
+
+    const name = text(anchor);
+    if (name) customGenres.add(name);
+    return [];
   });
 
   const description = text(
@@ -257,6 +263,7 @@ function parseManga(id: string, html: string): DetailedManga {
       : Status.OnGoing,
     authors,
     genres,
+    customGenres: [...customGenres],
     chapters,
     meta: latestRevision,
   };

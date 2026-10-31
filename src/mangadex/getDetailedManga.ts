@@ -8,6 +8,7 @@ import {
   getChapterFeed,
   localizedText,
   toChapter,
+  toCustomGenres,
   toGenres,
   toManga,
 } from "./utils.ts";
@@ -70,6 +71,7 @@ async function getDetailedManga(mangaId: string): Promise<DetailedManga> {
       ),
     ],
     genres: toGenres(data),
+    customGenres: toCustomGenres(data),
     latestChapter: latest ? toChapter(latest) : undefined,
     chapters: [...chapters.values()],
   };

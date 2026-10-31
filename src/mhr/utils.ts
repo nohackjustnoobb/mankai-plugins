@@ -197,6 +197,19 @@ async function toDetailedManga(data: any): Promise<DetailedManga> {
     { title: "volume", chapters: await toChapters(data.mangaRolls) },
   ].filter(({ chapters }) => chapters.length > 0);
 
+  const themes: string[] = (
+    Array.isArray(data.mangaTheme)
+      ? data.mangaTheme
+      : (data.mangaTheme ?? "").split(/[,，、/|;；]+/u)
+  )
+    .map((theme: string) => theme.trim())
+    .filter(Boolean);
+  const customGenres = await Promise.all(
+    themes
+      .filter((theme) => !Object.hasOwn(GENRES_MAP, theme))
+      .map((theme) => s2t(theme)),
+  );
+
   return {
     id: data.mangaId.toString(),
     title: await s2t(data.mangaName),
@@ -210,8 +223,9 @@ async function toDetailedManga(data: any): Promise<DetailedManga> {
     updatedAt,
     authors: data.mangaAuthors,
     genres: Object.entries(GENRES_MAP)
-      .filter(([key]) => data.mangaTheme.includes(key))
+      .filter(([key]) => themes.includes(key))
       .map(([, genre]) => genre),
+    customGenres: [...new Set(customGenres)],
     chapters,
   };
 }

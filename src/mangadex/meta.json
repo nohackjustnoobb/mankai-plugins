@@ -1,7 +1,7 @@
 {
   "id": "mangadex",
   "name": "MangaDex",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Browse and read manga from MangaDex with configurable chapter languages and image quality.",
   "getImageHeaders": {},
   "availableGenres": [

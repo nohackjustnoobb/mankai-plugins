@@ -235,6 +235,25 @@ function toGenres(data: MangaData): Genre[] {
   return [...new Set(genres)];
 }
 
+function toCustomGenres(data: MangaData): string[] {
+  const mappedTags = new Set([
+    ...Object.values(GENRE_TAGS),
+    "07251805-a27e-4d59-b488-f0bfbec15168", // Thriller -> Suspense
+    "cdc58593-87dd-415e-bbc0-2ec27bf404cc", // Fantasy -> Magic
+  ]);
+
+  return [
+    ...new Set(
+      (data.attributes.tags ?? []).flatMap((tag) => {
+        if (mappedTags.has(tag.id)) return [];
+
+        const name = localizedText(tag.attributes.name)?.trim();
+        return name ? [name] : [];
+      }),
+    ),
+  ];
+}
+
 function chapterParams(limit: number): URLSearchParams {
   const params = new URLSearchParams({
     limit: String(limit),
@@ -339,6 +358,7 @@ export {
   pageOffset,
   request,
   toChapter,
+  toCustomGenres,
   toGenres,
   toManga,
 };
