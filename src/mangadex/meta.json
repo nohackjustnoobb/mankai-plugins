@@ -1,8 +1,20 @@
 {
   "id": "mangadex",
   "name": "MangaDex",
-  "version": "1.0.2",
-  "description": "Browse and read manga from MangaDex with configurable chapter languages and image quality.",
+  "icon": "https://mangadex.org/pwa/icons/icon-180.png",
+  "version": "1.0.3",
+  "description": "Browse and read manga from MangaDex with localized titles, descriptions, and chapter languages.",
+  "localizations": {
+    "zh-Hans": {
+      "description": "浏览和阅读 MangaDex 漫画，支持多语言标题、简介和章节。"
+    },
+    "zh-Hant": {
+      "description": "瀏覽和閱讀 MangaDex 漫畫，支援多語言標題、簡介和章節。"
+    },
+    "ja": {
+      "description": "MangaDex の漫画を閲覧・読書。多言語のタイトル、あらすじ、チャプターに対応。"
+    }
+  },
   "getImageHeaders": {},
   "availableGenres": [
     "action",
@@ -28,8 +40,8 @@
   "configs": [
     {
       "key": "languages",
-      "name": "Chapter languages",
-      "description": "Comma-separated MangaDex language codes, in title preference order (e.g. en,zh-hk). zh is Simplified Chinese, zh-hk is Traditional Chinese.",
+      "name": "Browsing languages",
+      "description": "Comma-separated MangaDex language codes for browsing and search (e.g. en,zh-hk). The source default is English. All readable chapter languages remain available in manga details. zh is Simplified Chinese, zh-hk is Traditional Chinese.",
       "type": "text",
       "defaultValue": "en"
     },

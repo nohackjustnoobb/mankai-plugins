@@ -33,25 +33,36 @@ enum ReadingDirection {
   Vertical = 3,
 }
 
+interface ChapterLocalization {
+  title?: string;
+}
+
 interface Chapter {
   id: string;
   title?: string;
   locked?: boolean;
+  localizations?: Record<string, ChapterLocalization>;
 }
 
 interface ChapterGroup {
+  id?: string;
   title: string;
   chapters: Chapter[];
+  language?: string;
+  localizations?: Record<string, ChapterLocalization>;
 }
 
-interface Manga {
-  id: string;
+interface MangaLocalization {
   title?: string;
   cover?: string;
   status?: Status;
   latestChapter?: Chapter;
-
   meta?: string;
+}
+
+interface Manga extends MangaLocalization {
+  id: string;
+  localizations?: Record<string, MangaLocalization>;
 }
 
 interface MangaUpdateRequest {
@@ -63,7 +74,7 @@ interface MangaUpdate extends Manga {
   updates: boolean;
 }
 
-interface DetailedManga extends Manga {
+interface DetailedMangaLocalization extends MangaLocalization {
   externalLink?: string;
   readingDirection?: ReadingDirection;
   description?: string;
@@ -71,16 +82,24 @@ interface DetailedManga extends Manga {
   authors?: string[];
   genres?: Genre[];
   customGenres?: string[];
-  chapters?: ChapterGroup[];
   remarks?: string;
+  editable?: boolean;
+}
+
+interface DetailedManga extends Manga, DetailedMangaLocalization {
+  chapters?: ChapterGroup[];
+  localizations?: Record<string, DetailedMangaLocalization>;
 }
 
 export { Genre, ReadingDirection, Status };
 export type {
   Chapter,
   ChapterGroup,
+  ChapterLocalization,
   DetailedManga,
+  DetailedMangaLocalization,
   Manga,
+  MangaLocalization,
   MangaUpdate,
   MangaUpdateRequest,
 };

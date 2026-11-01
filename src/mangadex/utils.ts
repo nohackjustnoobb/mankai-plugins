@@ -67,22 +67,58 @@ function getLanguages(): string[] {
   return languages.length > 0 ? languages : ["en"];
 }
 
+// MangaDex uses some language codes that differ from the app's locale keys.
+function languageKey(language: string): string {
+  const code = language.toLowerCase();
+  const aliases: Record<string, string> = {
+    zh: "zh-Hans",
+    "zh-hk": "zh-Hant",
+    "es-la": "es-419",
+    "ja-ro": "ja-Latn",
+    "ko-ro": "ko-Latn",
+    "zh-ro": "zh-Latn",
+  };
+
+  if (aliases[code]) return aliases[code];
+
+  return code
+    .split("-")
+    .map((part, index) =>
+      index === 0
+        ? part
+        : part.length === 4
+          ? part[0]!.toUpperCase() + part.slice(1)
+          : part.toUpperCase(),
+    )
+    .join("-");
+}
+
+function localizedValues(
+  values: LocalizedString = {},
+  alternatives: LocalizedString[] = [],
+): LocalizedString {
+  const result: LocalizedString = {};
+
+  for (const source of [values, ...alternatives]) {
+    for (const [language, value] of Object.entries(source)) {
+      const key = languageKey(language);
+      if (value.trim() && !result[key]) result[key] = value;
+    }
+  }
+
+  return result;
+}
+
 function localizedText(
   values: LocalizedString = {},
   alternatives: LocalizedString[] = [],
 ): string | undefined {
-  const sources = [values, ...alternatives];
+  const translations = localizedValues(values, alternatives);
 
-  for (const language of [...getLanguages(), "en"]) {
-    for (const source of sources) {
-      if (source[language]?.trim()) return source[language];
-    }
-  }
-
-  return sources.flatMap(Object.values).find((value) => value.trim());
+  return translations.en ?? Object.values(translations)[0];
 }
 
-// A callback may perform several requests; the manifest cooldown only spaces callbacks.
+// A callback may perform several requests, the manifest cooldown only spaces callbacks.
 let nextRequestAt = 0;
 
 async function request(
@@ -199,6 +235,11 @@ function toManga(data: MangaData): Manga {
   return {
     id: data.id,
     title: localizedText(data.attributes.title, data.attributes.altTitles),
+    localizations: Object.fromEntries(
+      Object.entries(
+        localizedValues(data.attributes.title, data.attributes.altTitles),
+      ).map(([language, title]) => [language, { title }]),
+    ),
     cover: fileName
       ? `https://uploads.mangadex.org/covers/${data.id}/${fileName}.256.jpg`
       : undefined,
@@ -235,7 +276,7 @@ function toGenres(data: MangaData): Genre[] {
   return [...new Set(genres)];
 }
 
-function toCustomGenres(data: MangaData): string[] {
+function toCustomGenres(data: MangaData, language?: string): string[] {
   const mappedTags = new Set([
     ...Object.values(GENRE_TAGS),
     "07251805-a27e-4d59-b488-f0bfbec15168", // Thriller -> Suspense
@@ -247,7 +288,12 @@ function toCustomGenres(data: MangaData): string[] {
       (data.attributes.tags ?? []).flatMap((tag) => {
         if (mappedTags.has(tag.id)) return [];
 
-        const name = localizedText(tag.attributes.name)?.trim();
+        const name = (
+          language
+            ? (localizedValues(tag.attributes.name)[language] ??
+              localizedText(tag.attributes.name))
+            : localizedText(tag.attributes.name)
+        )?.trim();
         return name ? [name] : [];
       }),
     ),
@@ -263,7 +309,6 @@ function chapterParams(limit: number): URLSearchParams {
     includeExternalUrl: "0",
     includeUnavailable: "0",
   });
-  addArray(params, "translatedLanguage", getLanguages());
   addArray(params, "contentRating", CONTENT_RATINGS);
   addArray(params, "includes", ["scanlation_group"]);
 
@@ -275,7 +320,6 @@ function isReadable(chapter: ChapterData): boolean {
     chapter.attributes.pages > 0 &&
     !chapter.attributes.externalUrl &&
     !chapter.attributes.isUnavailable &&
-    getLanguages().includes(chapter.attributes.translatedLanguage) &&
     (!chapter.attributes.publishAt ||
       Date.parse(chapter.attributes.publishAt) <= Date.now()) &&
     (!chapter.attributes.readableAt ||
@@ -295,7 +339,7 @@ function chapterTime(chapter: ChapterData): number {
 }
 
 function toChapter(data: ChapterData): Chapter {
-  const { chapter, title, translatedLanguage } = data.attributes;
+  const { chapter, title } = data.attributes;
   const parts = [
     chapter != null ? `Ch. ${chapter}` : undefined,
     title?.trim(),
@@ -305,9 +349,11 @@ function toChapter(data: ChapterData): Chapter {
     .map((rel) => rel.attributes?.name)
     .filter(Boolean);
 
+  const credits = groups.length ? ` [${groups.join(" · ")}]` : "";
+
   return {
     id: data.id,
-    title: `${parts.join(" - ") || "Oneshot"} [${[translatedLanguage, ...groups].join(" · ")}]`,
+    title: `${parts.join(" - ") || "Oneshot"}${credits}`,
   };
 }
 
@@ -351,8 +397,10 @@ export {
   CONTENT_RATINGS,
   getChapterFeed,
   getMangaMetadata,
+  languageKey,
   LIMIT,
   localizedText,
+  localizedValues,
   mangaParams,
   MAX_RESULTS,
   pageOffset,
