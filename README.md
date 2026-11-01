@@ -16,8 +16,8 @@ https://raw.githubusercontent.com/nohackjustnoobb/mankai-plugins/static/mhg/mhg.
 https://raw.githubusercontent.com/nohackjustnoobb/mankai-plugins/static/mhr/mhr.json
 ```
 
-### MangaDex v1.0.2
-Browse and read manga from MangaDex with configurable chapter languages and image quality.
+### MangaDex v1.0.3
+Browse and read manga from MangaDex with localized titles, descriptions, and chapter languages.
 
 [Documentation](https://github.com/nohackjustnoobb/mankai-plugins/blob/static/mangadex/README.md)
 
