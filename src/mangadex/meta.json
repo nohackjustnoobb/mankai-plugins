@@ -2,7 +2,7 @@
   "id": "mangadex",
   "name": "MangaDex",
   "icon": "https://mangadex.org/pwa/icons/icon-180.png",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Browse and read manga from MangaDex with localized titles, descriptions, and chapter languages.",
   "localizations": {
     "zh-Hans": {

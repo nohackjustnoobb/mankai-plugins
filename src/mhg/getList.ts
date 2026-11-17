@@ -1,13 +1,23 @@
-import { Genre, Manga, Status } from "../utils/models.ts";
+import { Status } from "../utils/models.ts";
+import type {
+  GenreFilter,
+  Manga,
+  SortBy,
+  StatusFilter,
+} from "../utils/models.ts";
 import { GENRE_SLUGS, parseListResults, requestHtml } from "./utils.ts";
 
 async function getList(
   page: number = 1,
-  genre: Genre = Genre.All,
-  status: Status = Status.Any,
+  genre: GenreFilter | "all" | null = null,
+  status: StatusFilter | null = null,
+  _customGenre: string | null = null,
+  _sortBy: SortBy | null = null,
+  _customSort: string | null = null,
 ): Promise<Manga[]> {
-  const genreSlug = genre === Genre.All ? "" : GENRE_SLUGS[genre];
-  if (genre !== Genre.All && !genreSlug) return [];
+  if (genre === "custom") return [];
+  const genreSlug = genre === null || genre === "all" ? "" : GENRE_SLUGS[genre];
+  if (genreSlug === undefined) return [];
 
   const statusSlug =
     status === Status.OnGoing

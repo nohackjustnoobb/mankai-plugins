@@ -1,6 +1,11 @@
 import "../utils/bridge.ts";
 import { Genre, Status } from "../utils/models.ts";
-import type { Chapter, Manga } from "../utils/models.ts";
+import type {
+  Chapter,
+  GenreFilter,
+  Manga,
+  StatusFilter,
+} from "../utils/models.ts";
 import type {
   ChapterData,
   Collection,
@@ -178,8 +183,8 @@ function pageOffset(page: number): number {
 
 function mangaParams(
   page: number,
-  genre: Genre,
-  status: Status,
+  genre: GenreFilter | null = null,
+  status: StatusFilter | null = null,
 ): URLSearchParams {
   const params = new URLSearchParams({
     limit: String(LIMIT),
@@ -197,7 +202,7 @@ function mangaParams(
         : ["safe", "suggestive"],
   );
 
-  const tag = GENRE_TAGS[genre];
+  const tag = genre !== null && genre !== "custom" ? GENRE_TAGS[genre] : undefined;
   if (tag) addArray(params, "includedTags", [tag]);
   if (status === Status.OnGoing)
     addArray(params, "status", ["ongoing", "hiatus"]);

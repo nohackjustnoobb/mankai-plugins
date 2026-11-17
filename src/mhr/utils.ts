@@ -231,7 +231,6 @@ async function toDetailedManga(data: any): Promise<DetailedManga> {
 }
 
 const genreId: Record<Genre, number> = {
-  [Genre.All]: 0,
   [Genre.Action]: 31,
   [Genre.Romance]: 26,
   [Genre.SchoolLife]: 1,

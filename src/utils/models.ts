@@ -1,5 +1,4 @@
 enum Genre {
-  All = "all",
   Action = "action",
   Romance = "romance",
   Yuri = "yuri",
@@ -21,11 +20,16 @@ enum Genre {
   Otokonoko = "otokonoko",
 }
 
+type GenreFilter = Genre | "custom";
+
 enum Status {
-  Any = 0,
+  Unknown = 0,
   OnGoing = 1,
   Completed = 2,
 }
+
+type StatusFilter = Status.OnGoing | Status.Completed;
+type SortBy = "updateTime" | "popularity" | "custom";
 
 enum ReadingDirection {
   LeftToRight = 1,
@@ -41,6 +45,7 @@ interface Chapter {
   id: string;
   title?: string;
   locked?: boolean;
+  /** Language tags fall back to broader tags. Omitted fields use the base values. */
   localizations?: Record<string, ChapterLocalization>;
 }
 
@@ -48,6 +53,7 @@ interface ChapterGroup {
   id?: string;
   title: string;
   chapters: Chapter[];
+  /** Content language, omit for fallback groups when no language matches. */
   language?: string;
   localizations?: Record<string, ChapterLocalization>;
 }
@@ -62,6 +68,7 @@ interface MangaLocalization {
 
 interface Manga extends MangaLocalization {
   id: string;
+  /** Language tags fall back to broader tags. Omitted fields use the base values. */
   localizations?: Record<string, MangaLocalization>;
 }
 
@@ -83,11 +90,12 @@ interface DetailedMangaLocalization extends MangaLocalization {
   genres?: Genre[];
   customGenres?: string[];
   remarks?: string;
-  editable?: boolean;
 }
 
 interface DetailedManga extends Manga, DetailedMangaLocalization {
+  editable?: boolean;
   chapters?: ChapterGroup[];
+  /** Language tags fall back to broader tags. Omitted fields use the base values. */
   localizations?: Record<string, DetailedMangaLocalization>;
 }
 
@@ -98,8 +106,11 @@ export type {
   ChapterLocalization,
   DetailedManga,
   DetailedMangaLocalization,
+  GenreFilter,
   Manga,
   MangaLocalization,
   MangaUpdate,
   MangaUpdateRequest,
+  SortBy,
+  StatusFilter,
 };

@@ -1,12 +1,20 @@
-import { Genre, Manga, Status } from "../utils/models.ts";
+import type {
+  GenreFilter,
+  Manga,
+  SortBy,
+  StatusFilter,
+} from "../utils/models.ts";
 import { parseSearchResults, requestHtml } from "./utils.ts";
 
 async function search(
   query: string,
   page: number = 1,
-  _genre: Genre = Genre.All,
-  _status: Status = Status.Any,
+  _genre: GenreFilter | null = null,
+  _status: StatusFilter | null = null,
   _isAuthor: boolean = false,
+  _customGenre: string | null = null,
+  _sortBy: SortBy | null = null,
+  _customSort: string | null = null,
 ): Promise<Manga[]> {
   const encodedQuery = encodeURIComponent(query.trim());
   if (!encodedQuery) return [];

@@ -1,5 +1,9 @@
-import { Genre, Status } from "../utils/models.ts";
-import type { Manga } from "../utils/models.ts";
+import type {
+  GenreFilter,
+  Manga,
+  SortBy,
+  StatusFilter,
+} from "../utils/models.ts";
 import type { Collection, MangaData } from "./types.ts";
 import {
   apiGet,
@@ -12,8 +16,11 @@ import {
 
 async function getList(
   page: number = 1,
-  genre: Genre = Genre.All,
-  status: Status = Status.Any,
+  genre: GenreFilter | null = null,
+  status: StatusFilter | null = null,
+  _customGenre: string | null = null,
+  _sortBy: SortBy | null = null,
+  _customSort: string | null = null,
 ): Promise<Manga[]> {
   if (pageOffset(page) + LIMIT > MAX_RESULTS) return [];
 

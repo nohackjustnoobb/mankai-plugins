@@ -1,5 +1,9 @@
-import { Genre, Status } from "../utils/models.ts";
-import type { Manga } from "../utils/models.ts";
+import type {
+  GenreFilter,
+  Manga,
+  SortBy,
+  StatusFilter,
+} from "../utils/models.ts";
 import type { Collection, MangaData, Relationship } from "./types.ts";
 import {
   addArray,
@@ -14,9 +18,12 @@ import {
 async function search(
   query: string,
   page: number = 1,
-  genre: Genre = Genre.All,
-  status: Status = Status.Any,
+  genre: GenreFilter | null = null,
+  status: StatusFilter | null = null,
   isAuthor: boolean = false,
+  _customGenre: string | null = null,
+  _sortBy: SortBy | null = null,
+  _customSort: string | null = null,
 ): Promise<Manga[]> {
   if (pageOffset(page) + LIMIT > MAX_RESULTS || !query.trim()) return [];
 

@@ -1,11 +1,10 @@
-import { Genre, Status } from "../utils/models.ts";
 import type { Collection, MangaData } from "./types.ts";
 import { apiGet, mangaParams, toManga } from "./utils.ts";
 
 async function getSuggestion(query: string): Promise<string[]> {
   if (!query.trim()) return [];
 
-  const params = mangaParams(1, Genre.All, Status.Any);
+  const params = mangaParams(1);
   params.set("title", query.trim());
   params.set("limit", "10");
   params.set("order[relevance]", "desc");
